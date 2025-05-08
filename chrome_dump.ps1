@@ -30,7 +30,7 @@ while ($reader.Read()) {
     $encPwd = $reader.GetValue(2)
 
     if ($encPwd.Length -gt 0) {
-        $encBytes = $encPwd[3..]
+        $encBytes = $encPwd[3..($encPwd.Length - 1)]
         try {
             $dec = [Security.Cryptography.ProtectedData]::Unprotect($encBytes, $null, 0)
             $pwd = [System.Text.Encoding]::UTF8.GetString($dec)
